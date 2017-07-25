@@ -1,0 +1,19 @@
+from  django.views import generic
+from .models import Books
+from django.views.generic.edit import CreateView
+
+
+class IndexView(generic.ListView):
+    template_name = 'books/index.html'
+
+    def get_queryset(self):
+        return Books.objects.all()
+
+class BookCreate(CreateView):
+    model= Books
+    fields =  ['name', 'author', 'price', 'type', 'books_image' ]
+    template_name = 'books/book_form.html'
+
+class DetilView(generic.DetailView):
+    model = Books
+    template_name = 'books/details.html'
